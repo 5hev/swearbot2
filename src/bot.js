@@ -18,12 +18,16 @@ class SwearBot {
 
   updateLastMsg(msg) {
     this.lastMsg = msg;
-    if (this.savedMsg == null) {this.savedMsg = msg; } else {
-      console.log("UpdateLastMsg - no saved messages in cache.");
+    if (this.savedMsg == null) {
+      this.savedMsg = msg; 
+    } 
+    console.log(msg);
+    //else {
+      //console.log("UpdateLastMsg - no saved messages in cache.");
       //console.log(this.lastMsg.date - this.savedMsg.date);
       //this.bot.sendMessage(msg.chat.id, "Chat : " + msg.chat.id + " Last Message: " + msg.message_id + ". Previous (saved) Message: " 
       //                     + this.savedMsg.message_id + ". Difference is " + (msg.message_id - this.savedMsg.message_id) + " messages.");
-    }
+    //}
   }
 
   checkSpeed(step: Number) {
@@ -89,9 +93,9 @@ class SwearBot {
     //this.bot.on("inline_query", (query) => this.sendInlineReply(query));
     //this.bot.onText(/^\/start$/i, ({ chat }) => this.sendGreeting(chat));
     //this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
-    this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
-    this.bot.onText(/кирич/i, (query) => this.sendPMReply(query));
-    setInterval(() => this.checkSpeed(10), 10000);
+    //this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
+    //this.bot.onText(/кирич/i, (query) => this.sendPMReply(query));
+    setInterval(() => this.checkSpeed(60), 60000);
   }
 }
 
