@@ -39,7 +39,7 @@ class SwearBot {
                              answer = constants.SPEED_TOO_LOW;
                            } else 
                            {//just ok
-                             answer = constants.SPEED_OK;
+                             answer = constants.SPEED_TOO_OK;
                            };
       this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + answer + ".");
       
