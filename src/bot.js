@@ -30,19 +30,18 @@ class SwearBot {
     if (this.savedMsg) {
       var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
       var speed = diffMessages / step;
-      const answer = if (speed >= 10) 
+      var answer = ""; 
+      if (speed >= 10) 
                            {//too fast
-                             "Too fast"
+                             answer = "Too fast";
                            } else if (speed === 0)
                            {//too low
-                             "Too low"
+                             answer = "Too low";
                            } else 
                            {//just ok
-                             "OK"
+                             answer = "OK";
                            };
-      this.bot.sendMessage(msg.chat.id, "Chat : " + msg.chat.id + " Speed: " + speed + ". Answer: " + 
-                          answer + "."
-                          );
+      this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + answer + ".");
       
       
       //if (speed > constants.MAX_MESSAGE_DIFF) {
