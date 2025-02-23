@@ -30,6 +30,20 @@ class SwearBot {
     if (this.savedMsg) {
       var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
       var speed = diffMessages / step;
+      this.bot.sendMessage(msg.chat.id, "Chat : " + msg.chat.id + " Speed: " + speed + ". Answer: " + 
+                          if (speed >= 10) 
+                           {//too fast
+                             "Too fast"
+                           } else if 
+                           {//too low
+                             "Too low"
+                           } else 
+                           {//just ok
+                             "OK"
+                           } + "."
+                          );
+      
+      
       //if (speed > constants.MAX_MESSAGE_DIFF) {
       //console.log("Last #" + this.lastMsg.message_id + ". Saved #" + this.savedMsg.message_id
       //            + ". " + diffMessages + " msg sent in 5 seconds. The speed is " + speed + ".");
