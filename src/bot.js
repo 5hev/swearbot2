@@ -31,17 +31,17 @@ class SwearBot {
       var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
       var speed = diffMessages / step;
       var answer = ""; 
-      if (speed >= 10) 
+      if (speed >= 5) 
                            {//too fast
                              answer = constants.SPEED_TOO_FAST;
-                           } else if (speed === 0)
+                           } else if (speed <= 0.10)
                            {//too low
                              answer = constants.SPEED_TOO_LOW;
                            } else 
                            {//just ok
                              answer = constants.SPEED_TOO_OK;
                            };
-      this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + answer + ".");
+      this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + sample(answer) + ".");
       
       
       //if (speed > constants.MAX_MESSAGE_DIFF) {
@@ -49,7 +49,7 @@ class SwearBot {
       //            + ". " + diffMessages + " msg sent in 5 seconds. The speed is " + speed + ".");
       this.savedMsg = this.lastMsg;
     } else {
-      console.log(this);
+      //console.log(this);
     }
   }
   
