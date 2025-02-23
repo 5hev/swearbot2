@@ -33,13 +33,13 @@ class SwearBot {
       var answer = ""; 
       if (speed >= 10) 
                            {//too fast
-                             answer = "Too fast";
+                             answer = constants.SPEED_TOO_FAST;
                            } else if (speed === 0)
                            {//too low
-                             answer = "Too low";
+                             answer = constants.SPEED_TOO_LOW;
                            } else 
                            {//just ok
-                             answer = "OK";
+                             answer = constants.SPEED_OK;
                            };
       this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + answer + ".");
       
@@ -91,7 +91,7 @@ class SwearBot {
     this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
     this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
     
-    setInterval(() => this.checkSpeed(5), 5000);
+    setInterval(() => this.checkSpeed(10), 10000);
   }
 }
 
