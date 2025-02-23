@@ -19,7 +19,7 @@ class SwearBot {
   updateLastMsg(msg) {
     this.lastMsg = msg;
     if (this.savedMsg == null) {this.savedMsg = msg; } else {
-      //console.log(this);
+      console.log("UpdateLastMsg - no saved messages in cache.");
       //console.log(this.lastMsg.date - this.savedMsg.date);
       //this.bot.sendMessage(msg.chat.id, "Chat : " + msg.chat.id + " Last Message: " + msg.message_id + ". Previous (saved) Message: " 
       //                     + this.savedMsg.message_id + ". Difference is " + (msg.message_id - this.savedMsg.message_id) + " messages.");
