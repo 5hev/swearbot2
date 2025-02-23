@@ -23,9 +23,10 @@ class SwearBot {
     } 
 
     //отвечают именно боту
-    if (msg.reply_to_message.from.id == 7855984249) {
+    if (msg.reply_to_message && msg.reply_to_message.from.id == 7855984249) {
       this.bot.sendMessage(msg.chat.id, sample(getReplies(msg.text)), { reply_to_message_id: msg.message_id, });
     } else {
+      console.log("============ error ============");
       console.log(msg);
     }
 
@@ -43,10 +44,10 @@ class SwearBot {
       var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
       var speed = diffMessages / step;
       var answer = ""; 
-      if (speed >= 5) 
+      if (speed >= 0.05) 
                            {//too fast
                              answer = constants.SPEED_TOO_FAST;
-                           } else if (speed <= 0.10)
+                           } else if (speed <= 0.015)
                            {//too low
                              answer = constants.SPEED_TOO_LOW;
                            } else 
