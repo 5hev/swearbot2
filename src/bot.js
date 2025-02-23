@@ -41,7 +41,7 @@ class SwearBot {
                            {//just ok
                              answer = constants.SPEED_TOO_OK;
                            };
-      this.bot.sendMessage(this.lastMsg.chat.id, "Chat : " + this.lastMsg.chat.id + " Speed: " + speed + ". Answer: " + sample(answer) + ".");
+      this.bot.sendMessage(this.lastMsg.chat.id, "(" + speed + "). " + sample(answer));
       
       
       //if (speed > constants.MAX_MESSAGE_DIFF) {
@@ -49,7 +49,7 @@ class SwearBot {
       //            + ". " + diffMessages + " msg sent in 5 seconds. The speed is " + speed + ".");
       this.savedMsg = this.lastMsg;
     } else {
-      //console.log(this);
+      console.log("checkSpeed (" + step + " сек.) - Пустой вывод.");
     }
   }
   
