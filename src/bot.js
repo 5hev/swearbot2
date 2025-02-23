@@ -86,11 +86,11 @@ class SwearBot {
 
   run() {
     this.bot.on("message", (msg) => this.updateLastMsg(msg));
-    this.bot.on("inline_query", (query) => this.sendInlineReply(query));
-    this.bot.onText(/^\/start$/i, ({ chat }) => this.sendGreeting(chat));
-    this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
+    //this.bot.on("inline_query", (query) => this.sendInlineReply(query));
+    //this.bot.onText(/^\/start$/i, ({ chat }) => this.sendGreeting(chat));
+    //this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
     this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
-    
+    this.bot.onText(/кирич/i, (query) => this.sendPMReply(query));
     setInterval(() => this.checkSpeed(10), 10000);
   }
 }
