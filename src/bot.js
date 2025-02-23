@@ -9,27 +9,54 @@ import type { Chat, PMQuery, InlineQuery } from './types';
 
 class SwearBot {
   bot: TelegramBot;
-
+  lastMsg: Object;
+  savedMsg: Object;
+  
   constructor() {
-    this.bot = new TelegramBot(conf.TELEGRAM_TOKEN, {polling: true});
+    this.bot = new TelegramBot(conf.TELEGRAM_TOKEN, { polling: true });
   }
 
-  sendPMReply({chat, text}: PMQuery) {
+  updateLastMsg(msg) {
+    this.lastMsg = msg;
+    if (this.savedMsg == null) {this.savedMsg = msg; } else {
+      //console.log(this);
+      //console.log(this.lastMsg.date - this.savedMsg.date);
+      //this.bot.sendMessage(msg.chat.id, "Chat : " + msg.chat.id + " Last Message: " + msg.message_id + ". Previous (saved) Message: " 
+      //                     + this.savedMsg.message_id + ". Difference is " + (msg.message_id - this.savedMsg.message_id) + " messages.");
+    }
+  }
+
+  checkSpeed(step: Number) {
+    if (this.savedMsg) {
+      var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
+      var speed = diffMessages / step;
+      //if (speed > constants.MAX_MESSAGE_DIFF) {
+      console.log("Last #" + this.lastMsg.message_id + ". Saved #" + this.savedMsg.message_id
+                  + ". " + diffMessages + " msg sent in 5 seconds. The speed is " + speed + ".");
+      this.savedMsg = this.lastMsg;
+    } else {
+      console.log(this);
+    }
+  }
+  
+  sendPMReply({ chat, text }: PMQuery) {
     const reply = sample(getReplies(text));
-    this.bot.sendMessage(chat.id, reply);
+    this.bot.sendMessage(chat.id, reply, {
+      reply_to_message_id: this.lastMsg.message_id,
+    });
   }
 
-  sendInlineReply({id, query}: InlineQuery) {
+  sendInlineReply({ id, query }: InlineQuery) {
     const replies = getReplies(query);
     if (!replies) {
       return;
     }
 
     const results = replies.map((reply) => ({
-      type: 'article',
+      type: "article",
       id: uuidV4(),
       title: reply,
-      input_message_content: {message_text: reply},
+      input_message_content: { message_text: reply },
     }));
 
     this.bot.answerInlineQuery(id, results);
@@ -44,10 +71,13 @@ class SwearBot {
   }
 
   run() {
-    this.bot.on('inline_query', (query) => this.sendInlineReply(query));
-    this.bot.onText(/^\/start$/i, ({chat}) => this.sendGreeting(chat));
-    this.bot.onText(/^\/help$/i, ({chat}) => this.sendHelp(chat));
+    this.bot.on("message", (msg) => this.updateLastMsg(msg));
+    this.bot.on("inline_query", (query) => this.sendInlineReply(query));
+    this.bot.onText(/^\/start$/i, ({ chat }) => this.sendGreeting(chat));
+    this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
     this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
+    
+    setInterval(() => this.checkSpeed(5), 5000);
   }
 }
 
