@@ -21,7 +21,13 @@ class SwearBot {
     if (this.savedMsg == null) {
       this.savedMsg = msg; 
     } 
-    console.log(msg);
+
+    //отвечают именно боту
+    if (msg.reply_to_message.from.id == 7855984249) {
+      this.bot.sendMessage(msg.chat.id, sample(getReplies(msg.text)), { reply_to_message_id: msg.message_id, });
+    }
+
+    //console.log(msg);
     //else {
       //console.log("UpdateLastMsg - no saved messages in cache.");
       //console.log(this.lastMsg.date - this.savedMsg.date);
