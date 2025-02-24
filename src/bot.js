@@ -47,10 +47,10 @@ class SwearBot {
       var diffMessages = this.lastMsg.message_id - this.savedMsg.message_id;
       var speed = diffMessages / step;
       var answer = ""; 
-      if (speed >= 0.05) 
+      if (speed >= 0.15) 
                            {//too fast
                              answer = constants.SPEED_TOO_FAST;
-                           } else if (speed <= 0.015)
+                           } else if (speed <= 0.005)
                            {//too low
                              answer = constants.SPEED_TOO_LOW;
                            } else 
