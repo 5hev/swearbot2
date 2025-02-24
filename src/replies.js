@@ -30,7 +30,7 @@ const getByWordTrigger = function*(text: string): Iterable<string> {
  */
 const getAnswerToQuestion = (text: string): string[] => {
   if (text.trim().endsWith('?')) {
-    return [constants.ANSWER_TO_QUESTION];
+    return constants.ANSWER_TO_QUESTION;
   }
 
   const questionWords = getWords(text)
@@ -38,7 +38,7 @@ const getAnswerToQuestion = (text: string): string[] => {
     .filter((morphs) => morphs.length && morphs[0].tag.Ques);
 
   if (questionWords.length) {
-    return [constants.ANSWER_TO_QUESTION];
+    return constants.ANSWER_TO_QUESTION;
   } else {
     return [];
   }
@@ -117,7 +117,7 @@ export default (text: string): string[] => {
     console.log("====== Answer is - " + answers);
     return answers;
   } else {
-    console.log("====== No answer - " + answers);
+    //console.log("====== No answer - " + answers);
     return constants.NO_ANSWERS;
   }
 }
