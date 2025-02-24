@@ -104,7 +104,7 @@ class SwearBot {
     //this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
     //this.bot.onText(/^[^\/](.*)/i, (query) => this.sendPMReply(query));
     //this.bot.onText(/кирич/i, (query) => this.sendPMReply(query));
-    setInterval(() => this.checkSpeed(60), 60000);
+    setInterval(() => this.checkSpeed(3600), 3600000);
   }
 }
 
