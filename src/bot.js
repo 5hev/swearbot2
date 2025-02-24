@@ -27,7 +27,7 @@ class SwearBot {
     console.log(msg);
     console.log("===============  END  ================");
     if (msg.text && msg.reply_to_message && msg.reply_to_message.from.id == 7855984249) {
-      this.bot.sendMessage(msg.chat.id, sample(getReplies(msg.text)), { reply_to_message_id: msg.message_id, });
+      this.bot.sendMessage(msg.chat.id, sample(getReplies(msg.text)), { reply_to_message: msg.message_id, });
     } else {
       //console.log("============ error ============");
       //console.log(msg);
