@@ -9,8 +9,8 @@ import type { Chat, PMQuery, InlineQuery } from './types';
 
 class SwearBot {
   bot: TelegramBot;
-  lastMsg: Object;
-  savedMsg: Object;
+  lastMsg: TelegramBot.Message;
+  savedMsg: TelegramBot.Message;
   
   constructor() {
     this.bot = new TelegramBot(conf.TELEGRAM_TOKEN, { polling: true });
@@ -23,7 +23,7 @@ class SwearBot {
     } 
 
     //отвечают именно боту
-    if (msg.reply_to_message && msg.reply_to_message.from.id == 7855984249) {
+    if (msg.text && msg.reply_to_message && msg.reply_to_message.from.id == 7855984249) {
       this.bot.sendMessage(msg.chat.id, sample(getReplies(msg.text)), { reply_to_message_id: msg.message_id, });
     } else {
       //console.log("============ error ============");
@@ -98,7 +98,7 @@ class SwearBot {
   }
 
   run() {
-    this.bot.on("text", (msg) => this.updateLastMsg(msg));
+    this.bot.on("message", (msg) => this.updateLastMsg(msg));
     //this.bot.on("inline_query", (query) => this.sendInlineReply(query));
     //this.bot.onText(/^\/start$/i, ({ chat }) => this.sendGreeting(chat));
     //this.bot.onText(/^\/help$/i, ({ chat }) => this.sendHelp(chat));
