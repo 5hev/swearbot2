@@ -114,8 +114,10 @@ export default (text: string): string[] => {
   ]);
 
   if (answers.length) {
+    console.log("====== Answer is - " + answers);
     return answers;
   } else {
-    return sample(constants.NO_ANSWERS);
+    console.log("====== No answer - " + answers);
+    return constants.NO_ANSWERS;
   }
 }
