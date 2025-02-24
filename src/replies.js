@@ -116,6 +116,6 @@ export default (text: string): string[] => {
   if (answers.length) {
     return answers;
   } else {
-    return constants.NO_ANSWERS;
+    return sample(constants.NO_ANSWERS);
   }
 }
