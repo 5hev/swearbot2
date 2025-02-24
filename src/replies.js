@@ -110,7 +110,7 @@ export default (text: string): string[] => {
   const answers = uniq([
     ...getByWordTrigger(text),
     ...getAnswerToQuestion(text),
-    ...getRhymes(text),
+    //...getRhymes(text),
   ]);
 
   if (answers.length) {
