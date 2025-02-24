@@ -54,7 +54,7 @@ class SwearBot {
                            {//just ok
                              answer = constants.SPEED_TOO_OK;
                            };
-      this.bot.sendMessage(this.lastMsg.chat.id, "(" + speed + "). " + sample(answer));
+      this.bot.sendMessage(this.lastMsg.chat.id, sample(answer));
       
       
       //if (speed > constants.MAX_MESSAGE_DIFF) {
