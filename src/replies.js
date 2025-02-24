@@ -114,7 +114,7 @@ export default (text: string): string[] => {
   ]);
 
   if (answers.length) {
-    console.log("====== Answer is - " + answers);
+    //console.log("====== Answer is - " + answers);
     return answers;
   } else {
     //console.log("====== No answer - " + answers);
